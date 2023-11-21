@@ -1,0 +1,30 @@
+type Query {
+  loginUser(usernameOrEmail: String!, password: String!, remember: Boolean): AuthResponse
+  validateToken(token: String!): AuthResponse
+  tokenRenew(token: String!): AuthResponse
+}
+
+type Mutation {
+  registerUser(username: String!, nickname: String!, email: String!, password: String!): RegisterResponse
+}
+
+type AuthResponse {
+  token: String
+  userID: ID
+  username: String
+  nickname: String
+  email: String
+  avatar: String
+}
+
+type RegisterResponse {
+  token: String
+  userID: ID
+  username: String
+  nickname: String
+  email: String
+  avatar: String
+  error: Boolean
+  message: String
+  data: [String]
+}

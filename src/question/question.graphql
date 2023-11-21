@@ -1,0 +1,74 @@
+type Query {
+  deleteQuestion(questionID: String!): DeleteQuestionResponse
+  deleteAnswer(questionID: String!): DeleteAnswerResponse
+  getQuestion(questionID: String!): GetQuestionResponse
+  getQuestions(userID: String, username: String, page: Int): GetQuestionsResponse
+  getUnansweredQuestions(page: Int): GetQuestionsResponse
+}
+
+type Mutation {
+  createQuestion(userID: String!, question: String!, anonymous: Boolean): CreateQuestionResponse
+  createAnswer(questionID: String!, answer: String!): CreateAnswerResponse
+}
+
+type CreateQuestionResponse {
+  questionID: ID
+  error: Boolean
+  message: String
+  data: Question
+}
+
+type CreateAnswerResponse {
+  questionID: ID
+  error: Boolean
+  message: String
+  data: Question
+}
+
+type DeleteQuestionResponse {
+  error: Boolean
+  message: String
+}
+
+type DeleteAnswerResponse {
+  error: Boolean
+  message: String
+}
+
+type GetQuestionsResponse {
+  currentPage: Int
+  totalPage: Int
+  totalRecords: Int
+  questions: [Question]
+}
+
+type GetQuestionResponse {
+  _id: ID
+  userID: ID
+  question: String
+  answer: String
+  creatorID: ID 
+  anonymous: Boolean
+  createdAt: String
+  updatedAt: String
+  from: User
+}
+
+type Question {
+  _id: ID
+  userID: ID
+  question: String
+  answer: String
+  creatorID: ID 
+  anonymous: Boolean
+  createdAt: String
+  updatedAt: String
+  from: User
+}
+
+type User {
+  id: ID
+  username: String
+  nickname: String
+  avatar: String
+}

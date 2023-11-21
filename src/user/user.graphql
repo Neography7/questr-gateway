@@ -1,0 +1,46 @@
+type Query {
+  getUserByID(id: ID!): User
+  getUser(username: String!): User
+  getInformation: UserInformation
+}
+
+type Mutation {
+  uploadAvatar(avatarBase64: String!): AvatarResponse
+  changePassword(oldPassword: String!, newPassword: String!, newPasswordConfirmation: String!): Response
+  changeInformation(username: String!, nickname: String!, email: String!, bio: String): UserInformationResponse
+}
+
+type User {
+  id: ID!
+  username: String!
+  nickname: String
+  bio: String
+  avatar: String
+}
+
+type Response {
+  error: Boolean
+  message: String
+}
+
+type AvatarResponse {
+  error: Boolean
+  message: String
+  avatar: String
+}
+
+type UserInformation {
+  id: ID!
+  username: String!
+  nickname: String
+  email: String!
+  bio: String
+  avatar: String
+}
+
+type UserInformationResponse {
+  username: String!
+  nickname: String
+  email: String!
+  bio: String
+}
